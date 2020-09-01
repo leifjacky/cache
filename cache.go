@@ -87,7 +87,7 @@ func (w *cachedWriter) Write(data []byte) (int, error) {
 		store := w.store
 		var cache responseCache
 		if err := store.Get(w.key, &cache); err == nil {
-			cache.Data = append(cache.Data, data...)
+			cache.Data = data
 		} else {
 			cache.Data = make([]byte, len(data))
 			copy(cache.Data, data)
