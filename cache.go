@@ -228,7 +228,7 @@ func handleCache(
 		var cache responseCache
 		key := keyGenerator(c)
 		err := store.Get(key, &cache)
-		if err != nil && err != persistence.ErrCacheMiss {
+		if err != nil && err.Error() != persistence.ErrCacheMiss.Error() {
 			log.Println(err.Error())
 		} else if err == nil {
 			writerHook(c, cache)
